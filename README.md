@@ -19,7 +19,7 @@ To do this with the sensors bundled with PRTG, you need two separate sensors: [P
 
 There is no need to put anything in the sensor "Parameters" field. It will work without any additional options.
 
-**Note:** some anti-virus might block the executable from either running or accessing the network. Check your [AV logs](https://i.imgur.com/UG5mFNA.png) for troubleshooting. Please inspect the source code if you feel unsure about allowing the program to run. [VirusTotal](https://www.virustotal.com/gui/file/228450fea535f5f6ee049e808c4b681b21a51863f36b2c2f31030e574bdf1d97/details) shows 10 false positives on the v3.0.0.3 executable.  
+**Note:** some anti-virus might block the executable from either running or accessing the network. Check your [AV logs](https://i.imgur.com/UG5mFNA.png) for troubleshooting. Please inspect the source code if you feel unsure about allowing the program to run. [VirusTotal](https://www.virustotal.com/gui/file/228450fea535f5f6ee049e808c4b681b21a51863f36b2c2f31030e574bdf1d97/detection) shows 10 false positives on the v3.0.0.3 executable.  
 
 
 ### Compiling your own executable:
