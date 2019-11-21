@@ -58,7 +58,7 @@ Ping method:
 
 The reason for having different methods of ping is due to the certain firewalls / anti-virus suites blocking particular echo request cargo strings and string lengths. This allows easier troubleshooting and fixes to get around those issues.  
 
-**Tip:** By using the `-h:hostname` argument you can ping a completely different host than the parent device. The `-h` argument will always precede any host declared in the environment variable `%prtg_host%` set by PRTG when executng the sensor (more info [here](https://www.paessler.com/manuals/prtg/custom_sensors)).
+**Tip:** By using the `-h:hostname` argument you can ping a completely different host than the parent device. The `-h` argument will always precede any host declared in the environment variable `%prtg_host%` (set by PRTG when executing the sensor - more info [here](https://www.paessler.com/manuals/prtg/custom_sensors)).
 
 #### Example:
 
