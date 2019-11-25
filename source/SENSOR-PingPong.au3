@@ -3,9 +3,9 @@
 #AutoIt3Wrapper_Change2CUI=y
 #AutoIt3Wrapper_Res_Comment=https://github.com/demux4555/PRTG-PingPong
 #AutoIt3Wrapper_Res_Description=PingPong standalone sensor for PRTG
-#AutoIt3Wrapper_Res_Fileversion=3.0.0.3
+#AutoIt3Wrapper_Res_Fileversion=3.0.0.4
 #AutoIt3Wrapper_Res_ProductName=PingPong
-#AutoIt3Wrapper_Res_ProductVersion=3.0.0.3
+#AutoIt3Wrapper_Res_ProductVersion=3.0.0.4
 #AutoIt3Wrapper_Res_LegalCopyright=demux4555 - gpl-3.0
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
@@ -20,6 +20,7 @@
 ;					3.0.0.0		2019.11.16		Added _DllPing().
 ;					3.0.0.1		2019.11.18		Code cleanup.
 ;					3.0.0.3		2019.11.21		Code cleanup, copied ECHO UDF to this program to reduce dependencies.
+;					3.0.0.4		2019.11.25		Incorrect use of $_H in _Ping() fixed
 ; Todo ..........: Look into some kind of IPv6 functionality for the ping functions that support it.
 ;                  PING.EXE interval support by perhaps using consecutive runs of the command (not very elegant, meh).
 ;                  Custom cargo strings.
@@ -710,7 +711,7 @@ Exit ;     #####################################################################
 
 		; WARMUP PING ?
 		If $_WARMUP Then
-			$_iResponseTime = Ping($_H, $_iTimeout)
+			$_iResponseTime = Ping($_sHost, $_iTimeout)
 			$_error = @error	; 1 = Host is offline, 2 = Host is unreachable (timeout), 3 = Bad destination, 4 = Other errors
 			If (Not ($_error==0)) Or ($_iResponseTime==0) Then
 				DEBUG("Warmup Ping() error: " & _GetPingErr($_error))
@@ -724,7 +725,7 @@ Exit ;     #####################################################################
 		; PING HOST AND COLLECT STATS
 		For $i = 1 To $_iCount
 
-			$_iResponseTime = Ping($_H, $_iTimeout)
+			$_iResponseTime = Ping($_sHost, $_iTimeout)
 			$_error = @error	; 1 = Host is offline, 2 = Host is unreachable (timeout), 3 = Bad destination, 4 = Other errors
 			If (Not ($_error==0)) Or ($_iResponseTime==0) Then
 				DEBUG("Ping() error: " & _GetPingErr($_error))
