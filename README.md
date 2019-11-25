@@ -73,7 +73,7 @@ This will ping remote host www.nytimes.com 20 times, with 1 sec interval, using 
 #### Notes:
 
 
-Keep the total number of ping requests, interval time, and timeout values within reasonable limits. If the host is unreachable you will have *N pings × timeout × interval* as the total execution time of the sensor. The resulting execution time needs to be lower than the timeout value of the sensor itself.
+Keep the total number of ping requests, interval time, and timeout values within reasonable limits. If the host is unreachable you will have *(N pings × timeout) + (N pings × interval)* as the total execution time of the sensor. The resulting execution time needs to be lower than the timeout value of the sensor itself (the default values result in a total of ~45 seconds execution time if all pings time out).
 
 If all ping requests fail or time out, the sensor goes to Error state.
 
