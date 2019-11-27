@@ -3,9 +3,9 @@
 #AutoIt3Wrapper_Change2CUI=y
 #AutoIt3Wrapper_Res_Comment=https://github.com/demux4555/PRTG-PingPong
 #AutoIt3Wrapper_Res_Description=PingPong standalone sensor for PRTG
-#AutoIt3Wrapper_Res_Fileversion=3.0.0.4
+#AutoIt3Wrapper_Res_Fileversion=3.0.0.5
 #AutoIt3Wrapper_Res_ProductName=PingPong
-#AutoIt3Wrapper_Res_ProductVersion=3.0.0.4
+#AutoIt3Wrapper_Res_ProductVersion=3.0.0.5
 #AutoIt3Wrapper_Res_LegalCopyright=demux4555 - gpl-3.0
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
@@ -21,6 +21,7 @@
 ;					3.0.0.1		2019.11.18		Code cleanup.
 ;					3.0.0.3		2019.11.21		Code cleanup, copied ECHO UDF to this program to reduce dependencies.
 ;					3.0.0.4		2019.11.25		Incorrect use of $_H in _Ping() fixed
+;					3.0.0.5		2019.11.27		Fixed missing <Error> tag when host unreachable.
 ; Todo ..........: Look into some kind of IPv6 functionality for the ping functions that support it.
 ;                  PING.EXE interval support by perhaps using consecutive runs of the command (not very elegant, meh).
 ;                  Custom cargo strings.
@@ -175,6 +176,7 @@ Global $oErrorHandler = ObjEvent("AutoIt.Error", "__Error_Handler")				; this ca
 		_PrtgChannel($ChExecTime, TimerDiff($hScriptTimer)/1000, "sec", $PRTG_CS_EXECTIME)
 		_PrtgPrintTag("Text", "Latency: " & Round($PingTimeAvg,1) & "ms (PL: " & Round($PingPacketLoss,0) & "%)")
 	Else
+		_PrtgPrintTag("Error", "1")
 		_PrtgPrintTag("Text", "Host unreachable")
 	EndIf
 
@@ -984,11 +986,10 @@ Exit ;     #####################################################################
 
 Func _PrintHelp()
 
-	Local Const $_FILEVERSION = FileGetVersion(@AutoItExe)
-	Local Const $_FILEDESC = FileGetVersion(@AutoItExe, "FileDescription")
-	Local Const $_FILECOMMENT = FileGetVersion(@AutoItExe, "Comments")
 
 	If @Compiled Then		; Note: FileVersion and FileDescription will report "AutoIt v3 Script - v3.3.14.5" if not compiled as executable
+		Local Const $_FILEVERSION = FileGetVersion(@AutoItExe)
+		Local Const $_FILEDESC = FileGetVersion(@AutoItExe, "FileDescription")
 		ECHO()
 		ECHO($_FILEDESC & " - v" & $_FILEVERSION)
 	EndIf
@@ -1014,6 +1015,7 @@ Func _PrintHelp()
 	ECHO()
 
 	If @Compiled Then		; Note: FileVersion and FileDescription will report "AutoIt v3 Script - v3.3.14.5" if not compiled as executable
+		Local Const $_FILECOMMENT = FileGetVersion(@AutoItExe, "Comments")
 		ECHO($_FILECOMMENT)
 		ECHO()
 	EndIf
