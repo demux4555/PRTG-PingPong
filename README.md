@@ -87,4 +87,4 @@ If all ping requests fail or time out, the sensor goes to Error state.
 * 3.0.0.1		2019.11.18		Code cleanup
 * 3.0.0.3		2019.11.21		Code cleanup, copied ECHO UDF to this program to reduce dependencies
 * 3.0.0.4		2019.11.25		Minor _Ping() issue fixed
-* 3.0.0.5		2019.11.27		Fixed missing <Error> tag
+* 3.0.0.5		2019.11.27		Fixed missing \<Error\> tag
