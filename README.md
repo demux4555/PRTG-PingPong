@@ -4,7 +4,7 @@ PingPong standalone sensor for PRTG
 
 ## Introduction
 
-A standalone ping sensor w/jitter for PRTG. Includes response time (latency), jitter, and packet loss.
+A standalone ping sensor w/jitter for PRTG. Includes response time (latency), jitter, and packet loss. The sensor can function as Master sensor for parent.
 
 To do this with the sensors bundled with PRTG, you need two separate sensors: [Ping](https://www.paessler.com/manuals/prtg/ping_sensor) and [Ping Jitter](https://www.paessler.com/manuals/prtg/ping_jitter_sensor). If you want latency and jitter in the same sensor, you need a total of *three* sensors to accomplish this using the [Sensor Factory Sensor](https://www.paessler.com/manuals/prtg/sensor_factory_sensor). Unfortunately, Paessler has [no plans](https://kb.paessler.com/en/topic/60679-ping-jitter-as-additional-channel-in-ping-sensor) of combining these two.
 
@@ -76,6 +76,8 @@ This will ping remote host www.nytimes.com 20 times, with 1 sec interval, using 
 Keep the total number of ping requests, interval time, and timeout values within reasonable limits. If the host is unreachable you will have *(N pings × timeout) + (N pings × interval)* as the total execution time of the sensor. The resulting execution time needs to be lower than the timeout value of the sensor itself (the default values result in a total of ~45 seconds execution time if all pings time out).
 
 If all ping requests fail or time out, the sensor goes to Error state.
+
+Custom sensors do unfortunately not have an option for Auto Acknowledge. If you want the sensor to show "Down (Acknowledged)" while in error state, you can find instructions [here](https://kb.paessler.com/en/topic/5903-how-to-auto-acknowledge-a-down-sensor-in-prtg).
 
 #### References:
 * http://www.voiptroubleshooter.com/indepth/jittersources.html
